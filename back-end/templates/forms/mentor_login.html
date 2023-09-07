@@ -1,0 +1,50 @@
+<h1>Mentor Login</h1>
+<form method="POST" action="/login/mentor">
+  {{ form.csrf_token }}
+
+  <div class="form-group">
+    {{ form.email.label }} {{ form.email(class="form-control") }}
+  </div>
+
+  <div class="form-group">
+    {{ form.password.label }}
+    <div class="input-group">
+      {{ form.password(class="form-control password-field") }}
+      <div class="input-group-append">
+        <span class="input-group-text">
+          <i class="fa fa-eye-slash toggle-password" aria-hidden="true"></i>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Login</button>
+</form>
+
+<div class="signup-link">
+  <p>Don't have an account? <a href="/signup/mentor">Signup</a></p>
+</div>
+
+<div class="forgot-password-link">
+  <p>Forgot password? <a href="/forgot-password">Reset</a></p>
+</div>
+
+<script>
+  // Toggle password visibility
+  document.addEventListener("DOMContentLoaded", function() {
+    const passwordField = document.querySelector(".password-field");
+    const togglePassword = document.querySelector(".toggle-password");
+
+    togglePassword.addEventListener("click", function() {
+      if (passwordField.type === "password") {
+        passwordField.type = "text";
+        togglePassword.classList.remove("fa-eye-slash");
+        togglePassword.classList.add("fa-eye");
+      } else {
+        passwordField.type = "password";
+        togglePassword.classList.remove("fa-eye");
+        togglePassword.classList.add("fa-eye-slash");
+      }
+    });
+  });
+</script>

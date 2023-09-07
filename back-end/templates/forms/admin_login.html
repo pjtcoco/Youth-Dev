@@ -1,0 +1,43 @@
+
+<h1>Admin Login</h1>
+<form method="POST" action="/login/admin">
+  {{ form.csrf_token }}
+
+  <div class="form-group">
+    {{ form.email.label }} {{ form.email(class="form-control") }}
+  </div>
+
+  <div class="form-group">
+    {{ form.password.label }}
+    <div class="input-group">
+      {{ form.password(class="form-control password-field") }}
+      <div class="input-group-append">
+        <span class="input-group-text">
+          <i class="fa fa-eye-slash toggle-password" aria-hidden="true"></i>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Login</button>
+</form>
+
+<script>
+  // Toggle password visibility
+  document.addEventListener("DOMContentLoaded", function() {
+    const passwordField = document.querySelector(".password-field");
+    const togglePassword = document.querySelector(".toggle-password");
+
+    togglePassword.addEventListener("click", function() {
+      if (passwordField.type === "password") {
+        passwordField.type = "text";
+        togglePassword.classList.remove("fa-eye-slash");
+        togglePassword.classList.add("fa-eye");
+      } else {
+        passwordField.type = "password";
+        togglePassword.classList.remove("fa-eye");
+        togglePassword.classList.add("fa-eye-slash");
+      }
+    });
+  });
+</script>

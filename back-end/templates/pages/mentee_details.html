@@ -1,0 +1,46 @@
+ <!-- Navbar for mentee -->
+    {% if user_role == 'mentee' %}
+        <a href="/mentee/home">Home</a>
+        <a href="/project">Projects</a>
+        <a href="/add_project">Add Project</a>
+        <a href="/blog">Blog</a>
+        <a href="/about">About Us</a>
+        <a href="/mentee/profile">Profile</a>
+        <a href="/logout">Logout</a>
+    {% endif %}
+    
+<!-- mentee_details.html -->
+
+<h2>{{ mentee.first_name }} {{ mentee.last_name }}</h2>
+
+<!-- Display carousel of mentee images -->
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    {% for image in mentee.images %}
+      <div class="carousel-item {% if loop.index == 1 %}active{% endif %}">
+        <img src="{{ image }}" class="d-block w-100" alt="Mentee Image">
+      </div>
+    {% endfor %}
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+
+<!-- Display other mentee details -->
+<p>Age: {{ mentee.age }}</p>
+<p>Github: <a href="{{ mentee.github_link }}" target="_blank">{{ mentee.github_link }}</a></p>
+<p>Email: {{ mentee.email }}</p>
+<p>Phone Number: {{ mentee.phone_number }}</p>
+<p>Gender: {{ mentee.gender }}</p>
+<p>Organization: {{ mentee.organization }}</p>
+<p>Education Level: {{ mentee.education_level }}</p>
+<p>Program Studied: {{ mentee.program_studied }}</p>
+
+<!-- Add any other mentee details here -->

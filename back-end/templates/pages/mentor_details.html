@@ -1,0 +1,65 @@
+<!-- Navbar for mentor -->
+    {% if user_role == 'mentor' %}
+        <a href="/mentor/home">Home</a>
+        <a href="/project">Projects</a>
+        <a href="/add_project">Add Project</a>
+        <a href="/blog">Blog</a>
+        <a href="/about">About Us</a>
+        <a href="/mentor/profile">Profile</a>
+        <a href="/logout">Logout</a>
+    {% endif %}
+<!-- Display carousel of mentor images -->
+<div
+  id="carouselExampleIndicators"
+  class="carousel slide"
+  data-bs-ride="carousel"
+>
+  <div class="carousel-inner">
+    {% for image in mentor.images %}
+    <div class="carousel-item {% if loop.index == 1 %}active{% endif %}">
+      <img src="{{ image }}" class="d-block w-100" alt="Mentor Image" />
+    </div>
+    {% endfor %}
+  </div>
+  <button
+    class="carousel-control-prev"
+    type="button"
+    data-bs-target="#carouselExampleIndicators"
+    data-bs-slide="prev"
+  >
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button
+    class="carousel-control-next"
+    type="button"
+    data-bs-target="#carouselExampleIndicators"
+    data-bs-slide="next"
+  >
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<!-- Display other mentor details -->
+<p>First Name: {{ mentor.first_name }}</p>
+<p>Last Name: {{ mentor.last_name }}</p>
+<p>Email: {{ mentor.email }}</p>
+<p>Phone Number: {{ mentor.phone_number }}</p>
+<p>Gender: {{ mentor.gender }}</p>
+<p>Age: {{ mentor.age }}</p>
+<p>
+  Github:
+  <a href="{{ mentor.github_link }}" target="_blank"
+    >{{ mentor.github_link }}</a
+  >
+</p>
+<p>Organization: {{ mentor.organization }}</p>
+
+
+
+<!-- Mentor button -->
+<form action="/request_mentor" method="POST">
+  <input type="hidden" name="mentor_id" value="{{ mentor.id }}" />
+  <button type="submit" class="btn btn-primary">Request Mentorship</button>
+</form>

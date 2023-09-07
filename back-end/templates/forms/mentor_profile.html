@@ -1,0 +1,32 @@
+<!-- mentor_profile.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mentor Profile</title>
+</head>
+<body>
+    <h1>Mentor Profile</h1>
+    <form method="POST" action="/mentor/edit_profile">
+        <label for="first_name">First Name:</label>
+        <input type="text" id="first_name" name="first_name" value="{{ mentor.first_name }}" required><br>
+
+        <label for="last_name">Last Name:</label>
+        <input type="text" id="last_name" name="last_name" value="{{ mentor.last_name }}" required><br>
+
+        <label for="phone_number">Phone Number:</label>
+        <input type="text" id="phone_number" name="phone_number" value="{{ mentor.phone_number }}" required><br>
+
+        <label for="github_link">GitHub Link:</label>
+        <input type="text" id="github_link" name="github_link" value="{{ mentor.github_link }}" required><br>
+
+        <label for="organization">Organization:</label>
+        <input type="text" id="organization" name="organization" value="{{ mentor.organization }}" required><br>
+
+        <input type="submit" value="Update Profile">
+    </form>
+
+    <form method="POST" action="/mentor/delete_profile" onsubmit="return confirm('Are you sure you want to delete your profile?');">
+        <input type="submit" value="Delete Profile">
+    </form>
+</body>
+</html>

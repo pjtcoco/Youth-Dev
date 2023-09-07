@@ -1,0 +1,25 @@
+<!-- projects.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Projects</title>
+</head>
+<body>
+    <h1>Projects</h1>
+    <ul>
+        {% for project in projects %}
+        <li>{{ project.project_name }}</li>
+        {% endfor %}
+    </ul>
+
+    <div>
+        {% if pagination.has_prev %}
+        <a href="?page={{ pagination.prev_num }}">Previous</a>
+        {% endif %}
+
+        {% if pagination.has_next %}
+        <a href="?page={{ pagination.next_num }}">Next</a>
+        {% endif %}
+    </div>
+</body>
+</html>

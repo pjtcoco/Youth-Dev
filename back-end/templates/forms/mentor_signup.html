@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mentor Signup</title>
+  </head>
+  <body>
+    <h1>Mentor Signup</h1>
+    <form action="/signup/mentor" method="POST" enctype="multipart/form-data">
+      {{ form.hidden_tag() }}
+
+      <div class="form-group">
+        {{ form.first_name.label }} {{ form.first_name(class="form-control") }}
+      </div>
+
+      <div class="form-group">
+        {{ form.last_name.label }} {{ form.last_name(class="form-control") }}
+      </div>
+
+      <div class="form-group">
+        {{ form.email.label }} {{ form.email(class="form-control") }}
+      </div>
+
+      <div class="form-group">
+        {{ form.password.label }} {{ form.password(class="form-control") }}
+      </div>
+
+      <div class="form-group">
+        {{ form.phone_number.label }} {{ form.phone_number(class="form-control") }}
+      </div>
+
+      <div class="form-group">
+        {{ form.gender.label }} {{ form.gender(class="form-control", id="gender") }}
+      </div>
+
+      <div class="form-group">
+        {{ form.age.label }} {{ form.age(class="form-control") }}
+      </div>
+
+      <div class="form-group">
+        {{ form.github_link.label }} {{ form.github_link(class="form-control") }}
+      </div>
+
+      <div class="form-group">
+        {{ form.organization.label }} {{ form.organization(class="form-control") }}
+      </div>
+
+      <div class="form-group" id="images-field">
+        {{ form.images.label }} {{ form.images(class="form-control-file", multiple=True) }}
+      </div>
+
+      <div class="form-group">{{ form.submit(class="btn btn-primary") }}</div>
+    </form>
+
+    <div class="login-link">
+      <p>Already have an account? <a href="/login/mentor">Login</a></p>
+    </div>
+
+    <script>
+      // Function to show or hide the images field based on the gender selection
+      function toggleImagesField() {
+        const selectedGender = document.getElementById("gender").value;
+        const imagesField = document.getElementById("images-field");
+
+        if (selectedGender === "male") {
+          imagesField.classList.remove("hidden");
+        } else {
+          imagesField.classList.add("hidden");
+        }
+      }
+
+      // Event listener for gender field change
+      const genderField = document.getElementById("gender");
+      genderField.addEventListener("change", toggleImagesField);
+
+      // Initial check on page load
+      toggleImagesField();
+    </script>
+  </body>
+</html>

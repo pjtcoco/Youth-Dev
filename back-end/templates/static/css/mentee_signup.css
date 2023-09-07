@@ -1,0 +1,32 @@
+ body {
+        padding: 40px;
+      }
+      .step {
+        display: none;
+      }
+      .step.active {
+        display: block;
+      }
+      .step-buttons {
+        display: flex;
+        justify-content: space-between;
+      }
+      .btn {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+      .btn-primary {
+        background-color: #007bff;
+      }
+      .btn-primary:hover {
+        background-color: #0069d9;
+      }
+      .btn-primary:active {
+        background-color: #0062cc;
+      }
+      .btn-primary:focus {
+        box-shadow: none;
+      }

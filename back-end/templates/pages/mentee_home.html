@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mentee Home</title>
+    <style>
+      .mentee-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        list-style: none;
+        padding: 0;
+      }
+
+      .mentee-box {
+        flex: 0 0 calc(33.33% - 20px);
+        margin: 10px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        text-align: center;
+      }
+
+      @media (max-width: 1200px) {
+        .mentee-box {
+          flex: 0 0 calc(50% - 20px);
+        }
+      }
+
+      @media (max-width: 600px) {
+        .mentee-box {
+          flex: 0 0 calc(100% - 20px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar for mentee -->
+    {% if user_role == 'mentee' %}
+    <nav style="background-color: #f2f2f2; padding: 10px">
+      <a
+        href="/mentee/home"
+        style="
+          display: inline-block;
+          margin-right: 10px;
+          text-decoration: none;
+          color: #333;
+        "
+        >Home</a
+      >
+      <a
+        href="/project"
+        style="
+          display: inline-block;
+          margin-right: 10px;
+          text-decoration: none;
+          color: #333;
+        "
+        >Projects</a
+      >
+      <a
+        href="/create_project"
+        style="
+          display: inline-block;
+          margin-right: 10px;
+          text-decoration: none;
+          color: #333;
+        "
+        >Add Project</a
+      >
+      <a
+        href="/blog"
+        style="
+          display: inline-block;
+          margin-right: 10px;
+          text-decoration: none;
+          color: #333;
+        "
+        >Blog</a
+      >
+      <a
+        href="/about"
+        style="
+          display: inline-block;
+          margin-right: 10px;
+          text-decoration: none;
+          color: #333;
+        "
+        >About Us</a
+      >
+      <a
+        href="/mentee/profile"
+        style="
+          display: inline-block;
+          margin-right: 10px;
+          text-decoration: none;
+          color: #333;
+        "
+        >Profile</a
+      >
+      <a
+        href="/logout"
+        style="
+          display: inline-block;
+          margin-right: 10px;
+          text-decoration: none;
+          color: #333;
+        "
+        >Logout</a
+      >
+    </nav>
+    {% endif %} {% if current_user %}
+    <h1>Welcome, {{ current_user.first_name }}!</h1>
+    {% else %}
+    <h1>Welcome, Guest!</h1>
+    {% endif %}
+    <h2>Available Mentees:</h2>
+    <ul class="mentee-grid">
+      {% for mentee in mentees %}
+      <li class="mentee-box">
+        <img
+          src="{{ mentee.picture_url }}"
+          alt="Mentee Picture"
+          width="100"
+          height="100"
+        />
+        <p>Name: {{ mentee.first_name }} {{ mentee.last_name }}</p>
+        <p>Education Level: {{ mentee.education_level }}</p>
+        <p>Age: {{ mentee.age }}</p>
+        <p>
+          Github:
+          <a href="{{ mentee.github_link }}" target="_blank"
+            >{{ mentee.github_link }}</a
+          >
+        </p>
+        <a href="/mentor/mentee/{{ mentee.mentee_id }}">More</a>
+      </li>
+      {% endfor %}
+    </ul>
+
+    {% if pagination.pages > 1 %}
+    <nav aria-label="Mentee Pagination">
+      <ul class="pagination">
+        {% if pagination.has_prev %}
+        <li class="page-item">
+          <a
+            class="page-link"
+            href="{{ url_for('mentee_home', page=pagination.prev_num) }}"
+            >Previous</a
+          >
+        </li>
+        {% endif %} {% for num in pagination.iter_pages() %} {% if num %}
+        <li class="page-item {% if num == pagination.page %}active{% endif %}">
+          <a class="page-link" href="{{ url_for('mentee_home', page=num) }}"
+            >{{ num }}</a
+          >
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+          <span class="page-link">...</span>
+        </li>
+        {% endif %} {% endfor %} {% if pagination.has_next %}
+        <li class="page-item">
+          <a
+            class="page-link"
+            href="{{ url_for('mentee_home', page=pagination.next_num) }}"
+            >Next</a
+          >
+        </li>
+        {% endif %}
+      </ul>
+    </nav>
+    {% endif %}
+  </body>
+</html>

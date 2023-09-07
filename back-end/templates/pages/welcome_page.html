@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome</title>
+    <link rel="stylesheet" href="../static/css/welcome_page.css">
+  </head>
+  <body>
+    <h1>Welcome to Youth-Dev!</h1>
+    <p>
+      Youth-Dev is a platform where mentors and mentees can connect with each
+      other and collaborate on projects.
+    </p>
+    <p>Are you interested in becoming a mentor or a mentee?</p>
+    <a href="{{ url_for('mentor_signup', role='mentor') }}"
+      ><button>Sign Up as a Mentor</button></a
+    >
+    <a href="{{ url_for('signup', role='mentee') }}"
+      ><button>Sign Up as a Mentee</button></a
+    >
+  </body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Signup</title>
+  </head>
+  <body>
+    
+    <div class="container">
+      <h1>Signup</h1>
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <form method="POST" action="/signup">
+            {{ form.csrf_token }}
+            <div class="step active" id="step-1">
+              <h3>Step 1: Personal Information</h3>
+              <!-- Personal Information fields -->
+              <div class="form-group">
+                <label for="first_name">First Name:</label>
+                <input type="text" id="first_name" name="first_name" required />
+              </div>
+              <div class="form-group">
+                <label for="last_name">Last Name:</label>
+                <input type="text" id="last_name" name="last_name" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required />
+              </div>
+
+              <div class="form-group">
+                <label for="link">Github Link:</label>
+                <input type="link" id="github_link" name="github_link" />
+              </div>
+
+              <div class="form-group">
+                <label for="age">Age:</label>
+                <input
+                  type="number"
+                  id="age"
+                  name="age"
+                  min="18"
+                  max="100"
+                  required
+                />
+              </div>
+              <!-- ... -->
+
+              <button type="button" class="btn btn-primary" id="next-1">
+                Next
+              </button>
+            </div>
+            <div class="step" id="step-2">
+              <h3>Step 2: Account Information</h3>
+              <!-- Account Information fields -->
+              <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required />
+              </div>
+              <div class="form-group">
+                <label for="phone_number">Phone Number:</label>
+                <input
+                  type="tel"
+                  id="phone_number"
+                  name="phone_number"
+                  pattern="[0-9]{9}"
+                  required
+                />
+                <small>Cameroonian phone number (9 digits)</small>
+              </div>
+              <div class="form-group">
+                <label for="organization">Organization:</label>
+                <input type="text" id="organization" name="organization" />
+              </div>
+              <!-- ... -->
+
+              <button type="button" class="btn btn-primary" id="prev-2">
+                Previous
+              </button>
+              <button type="button" class="btn btn-primary" id="next-2">
+                Next
+              </button>
+            </div>
+            <div class="step" id="step-3">
+              <h3>Step 3: Additional Information</h3>
+              <!-- Additional Information fields -->
+              <div class="form-group">
+                <label for="education_level">Education Level:</label>
+                <select id="education_level" name="education_level" required>
+                  <option value="" disabled selected>
+                    Select Education Level
+                  </option>
+                  <option value="First Year">First Year</option>
+                  <option value="Second Year">Second Year</option>
+                  <option value="Final Year">Final Year</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" required>
+                  <option value="" disabled selected>Select Gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+              </div>
+
+              <div class="form-group" id="images-field">
+                {{ form.images.label }} {{
+                form.images(class="form-control-file", multiple=True) }}
+              </div>
+
+              <div class="form-group">
+                <label for="program_studied">Program Studied:</label>
+                <select id="program_studied" name="program_studied" required>
+                  <option value="" disabled selected>
+                    Select Program Studied
+                  </option>
+                  <option value="Web Development">Web Development</option>
+                  <option value="Mobile Development">Mobile Development</option>
+                  <option value="Machine Learning">Machine Learning</option>
+                  <option value="Networking">Networking</option>
+                </select>
+              </div>
+
+              <!-- ... -->
+
+              <button type="button" class="btn btn-primary" id="prev-3">
+                Previous
+              </button>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </form>
+          <div class="login-link">
+            <p>Already have an account? <a href="/login">Login</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Step navigation functionality
+        // ...
+
+        // Validate phone number input as user types
+        const phoneNumberInput = document.getElementById("phone_number");
+        phoneNumberInput.addEventListener("input", function () {
+          this.value = this.value.replace(/[^0-9]/g, "");
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Navbar</title>
+</head>
+<body>
+   <!-- Navbar for mentor -->
+{% if user_role == 'mentor' %}
+    <nav style="background-color: #f2f2f2; padding: 10px;">
+        <a href="/mentor/home" style="display: inline-block; margin-right: 10px; text-decoration: none; color: #333;">Home</a>
+        <a href="/project" style="display: inline-block; margin-right: 10px; text-decoration: none; color: #333;">Projects</a>
+        <a href="/add_project" style="display: inline-block; margin-right: 10px; text-decoration: none; color: #333;">Add Project</a>
+        <a href="/blog" style="display: inline-block; margin-right: 10px; text-decoration: none; color: #333;">Blog</a>
+        <a href="/about" style="display: inline-block; margin-right: 10px; text-decoration: none; color: #333;">About Us</a>
+        <a href="/mentor/profile" style="display: inline-block; margin-right: 10px; text-decoration: none; color: #333;">Profile</a>
+        <a href="/logout" style="display: inline-block; margin-right: 10px; text-decoration: none; color: #333;">Logout</a>
+    </nav>
+{% endif %}
+
+    <!-- Navbar for mentee -->
+   {% if user_role == 'mentee' %}
+    <nav style="background-color: #f2f2f2; padding: 10px;">
+        <a href="/mentee/home" style="display: inline-block; margin-right: 10px; text-decoration: none; color: #333;">Home</a>
+        <a href="/project" style="display: inline-block; margin-right: 10px; text-decoration: none; color: #333;">Projects</a>
+        <a href="/add_project" style="display: inline-block; margin-right: 10px; text-decoration: none; color: #333;">Add Project</a>
+        <a href="/blog" style="display: inline-block; margin-right: 10px; text-decoration: none; color: #333;">Blog</a>
+        <a href="/about" style="display: inline-block; margin-right: 10px; text-decoration: none; color: #333;">About Us</a>
+        <a href="/mentee/profile" style="display: inline-block; margin-right: 10px; text-decoration: none; color: #333;">Profile</a>
+        <a href="/logout" style="display: inline-block; margin-right: 10px; text-decoration: none; color: #333;">Logout</a>
+    </nav>
+{% endif %}
+</body>
+</html>

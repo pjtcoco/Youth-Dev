@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mentor Home</title>
+    <style>
+        .mentor-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            list-style: none;
+            padding: 0;
+        }
+
+        .mentor-box {
+            flex: 0 0 calc(33.33% - 20px);
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        @media (max-width: 1200px) {
+            .mentor-box {
+                flex: 0 0 calc(50% - 20px);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .mentor-box {
+                flex: 0 0 calc(100% - 20px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar for mentor -->
+    {% if user_role == 'mentor' %}
+        <a href="/mentor/home">Home</a>
+        <a href="/project">Projects</a>
+        <a href="/add_project">Add Project</a>
+        <a href="/blog">Blog</a>
+        <a href="/about">About Us</a>
+        <a href="/mentor/profile">Profile</a>
+        <a href="/logout">Logout</a>
+    {% endif %}
+    <!-- Navbar for mentor -->
+    {% if user_role == 'mentor' %}
+        <a href="/mentor/home">Home</a>
+        <a href="/project">Projects</a>
+        <a href="/add_project">Add Project</a>
+        <a href="/blog">Blog</a>
+        <a href="/about">About Us</a>
+        <a href="/mentor/profile">Profile</a>
+        <a href="/logout">Logout</a>
+    {% endif %}
+    {% if current_user %}
+    <h1>Welcome, {{ current_user.first_name }}!</h1>
+    {% else %}
+    <h1>Welcome, Guest!</h1>
+    {% endif %}
+    <h2>Available Mentors:</h2>
+    <ul class="mentor-grid">
+        {% for mentor in mentors %}
+            <li class="mentor-box">
+                <img src="{{ mentor.picture_url }}" alt="Mentor Picture" width="100" height="100">
+                <h3>{{ mentor.first_name }} {{ mentor.last_name }}</h3>
+                <p>Education Level: {{ mentor.education_level }}</p>
+                <p>Age: {{ mentor.age }}</p>
+                <p>Github: <a href="{{ mentor.github_link }}" target="_blank">{{ mentor.github_link }}</a></p>
+                <a href="/mentee/mentor/{{ mentor.mentor_id }}">More</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    {% if pagination.pages > 1 %}
+    <nav aria-label="Mentor Pagination">
+        <ul class="pagination">
+            {% if pagination.has_prev %}
+            <li class="page-item">
+                <a class="page-link" href="{{ url_for('mentor_home', page=pagination.prev_num) }}">Previous</a>
+            </li>
+            {% endif %}
+            {% for num in pagination.iter_pages() %}
+            {% if num %}
+            <li class="page-item {% if num == pagination.page %}active{% endif %}">
+                <a class="page-link" href="{{ url_for('mentor_home', page=num) }}">{{ num }}</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <span class="page-link">...</span>
+            </li>
+            {% endif %}
+            {% endfor %}
+            {% if pagination.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="{{ url_for('mentor_home', page=pagination.next_num) }}">Next</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+</body>
+</html>
